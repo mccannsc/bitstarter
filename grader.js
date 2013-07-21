@@ -1,4 +1,4 @@
-#!/user/bin/env node
+#!/usr/bin/env node
 /*
 Automatically grade fules for the presence of specifified HTML tags/attributes. 
 Uses commander.js and cheerio. teaches command line application development and basic DOM parsing. 
