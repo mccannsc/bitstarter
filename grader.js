@@ -22,10 +22,22 @@ References:
 */
 
 var fs = require('fs');
+var sys = require('util');
+var rest = require('restler');
 var program = require('commander');
 var cheerio = require('cheerio');
-var HTMLFILE_DEFAULT = "index.html";
+var HTMLFILE_DEFAULT = getHtml;
 var CHECKSFILE_DEFAULT = "checks.json";
+
+
+var getHtml = rest.get('http://stormy-savannah-2580.herokuapp.com').on('complete', function(result) {
+	if (result instanceof Error) {
+		sys.puts('Error: ' + result.message);
+		this.retry(5000); //try again after 5 seconds
+	} else {
+		sys.puts(result);
+	}
+});
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
